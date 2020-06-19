@@ -687,6 +687,14 @@ LLVM_DIS	:= llvm-dis
 export LLVM_AR LLVM_DIS
 endif
 
+ifeq ($(cc-name),clang)
+ifeq ($(ld-name),lld)
+LDFLAGS += -O2
+# Set O3 optimization level for LTO
+LDFLAGS		+= --plugin-opt=O3
+endif
+endif
+
 # The arch Makefile can set ARCH_{CPP,A,C}FLAGS to override the default
 # values of the respective KBUILD_* variables
 ARCH_CPPFLAGS :=
@@ -841,10 +849,6 @@ endif
 # These warnings generated too much noise in a regular build.
 # Use make W=1 to enable them (see scripts/Makefile.extrawarn)
 KBUILD_CFLAGS += $(call cc-disable-warning, unused-but-set-variable)
-
-ifeq ($(ld-name),lld)
-KBUILD_LDFLAGS += -O2
-endif
 
 KBUILD_CFLAGS += $(call cc-disable-warning, unused-const-variable)
 ifdef CONFIG_FRAME_POINTER
