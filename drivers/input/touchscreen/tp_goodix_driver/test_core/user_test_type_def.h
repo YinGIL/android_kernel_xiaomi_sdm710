@@ -125,16 +125,10 @@ extern "C" {
 #endif
 
 #elif ANDROID_CODE == 1 || QNX_CODE || LINUX_KERNEL == 1
-	typedef unsigned char u8;
-	typedef signed char s8;
 	typedef const unsigned char cu8;
-	typedef unsigned short u16;
 	typedef const unsigned short cu16;
-	typedef unsigned int u32;
 	typedef const unsigned int cu32;
-	typedef int s32;
 	typedef const int cs32;
-	typedef signed short s16;
 	typedef const signed short cs16;
 	typedef void *ptr32;
 	typedef void const *cptr32;
