@@ -104,7 +104,7 @@ struct elliptic_shared_data_block *elliptic_get_shared_obj(uint32_t
 #if IS_ENABLED(CONFIG_ELLIPTIC_US)
 unsigned int elliptic_add_platform_controls(void *platform);
 #else
-static inline unsigned int elliptic_add_platform_controls(void *)
+static inline unsigned int elliptic_add_platform_controls(void *platform)
 {
 	return 0;
 }
