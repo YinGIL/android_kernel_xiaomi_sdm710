@@ -207,8 +207,8 @@ static u32 smc(u32 cmd_addr)
 			".arch_extension sec\n"
 #endif
 			"smc	#0\n"
-			: "=r" (r0)
-			: "r" (r0), "r" (r1), "r" (r2)
+			: "=w" (r0)
+			: "w" (r0), "w" (r1), "w" (r2)
 			: R3_STR);
 	} while (r0 == SCM_INTERRUPTED);
 
@@ -459,10 +459,10 @@ static int __scm_call_armv8_32(u32 w0, u32 w1, u32 w2, u32 w3, u32 w4, u32 w5,
 			".arch_extension sec\n"
 #endif
 			"smc	#0\n"
-			: "=r" (r0), "=r" (r1), "=r" (r2), "=r" (r3),
-			  "=r" (r4), "=r" (r5), "=r" (r6)
-			: "r" (r0), "r" (r1), "r" (r2), "r" (r3), "r" (r4),
-			  "r" (r5), "r" (r6)
+			: "=w" (r0), "=w" (r1), "=w" (r2), "=w" (r3),
+			  "=w" (r4), "=w" (r5), "=w" (r6)
+			: "w" (r0), "w" (r1), "w" (r2), "w" (r3), "w" (r4),
+			  "w" (r5), "w" (r6)
 			: "x7", "x8", "x9", "x10", "x11", "x12", "x13",
 			"x14", "x15", "x16", "x17");
 
@@ -856,8 +856,8 @@ s32 scm_call_atomic1(u32 svc, u32 cmd, u32 arg1)
 			".arch_extension sec\n"
 #endif
 		"smc	#0\n"
-		: "=r" (r0)
-		: "r" (r0), "r" (r1), "r" (r2)
+		: "=w" (r0)
+		: "w" (r0), "w" (r1), "w" (r2)
 		: R3_STR);
 	return r0;
 }
@@ -890,8 +890,8 @@ s32 scm_call_atomic1_1(u32 svc, u32 cmd, u32 arg1, u32 *ret1)
 			".arch_extension sec\n"
 #endif
 		"smc	#0\n"
-		: "=r" (r0), "=r" (r1)
-		: "r" (r0), "r" (r1), "r" (r2)
+		: "=w" (r0), "=w" (r1)
+		: "w" (r0), "w" (r1), "w" (r2)
 		: R3_STR);
 	if (ret1)
 		*ret1 = r1;
@@ -927,8 +927,8 @@ s32 scm_call_atomic2(u32 svc, u32 cmd, u32 arg1, u32 arg2)
 			".arch_extension sec\n"
 #endif
 		"smc	#0\n"
-		: "=r" (r0)
-		: "r" (r0), "r" (r1), "r" (r2), "r" (r3));
+		: "=w" (r0)
+		: "w" (r0), "w" (r1), "w" (r2), "w" (r3));
 	return r0;
 }
 EXPORT_SYMBOL(scm_call_atomic2);
@@ -964,8 +964,8 @@ s32 scm_call_atomic3(u32 svc, u32 cmd, u32 arg1, u32 arg2, u32 arg3)
 			".arch_extension sec\n"
 #endif
 		"smc	#0\n"
-		: "=r" (r0)
-		: "r" (r0), "r" (r1), "r" (r2), "r" (r3), "r" (r4));
+		: "=w" (r0)
+		: "w" (r0), "w" (r1), "w" (r2), "w" (r3), "w" (r4));
 	return r0;
 }
 EXPORT_SYMBOL(scm_call_atomic3);
@@ -994,8 +994,8 @@ s32 scm_call_atomic4_3(u32 svc, u32 cmd, u32 arg1, u32 arg2,
 			".arch_extension sec\n"
 #endif
 		"smc	#0\n"
-		: "=r" (r0), "=r" (r1), "=r" (r2)
-		: "r" (r0), "r" (r1), "r" (r2), "r" (r3), "r" (r4), "r" (r5));
+		: "=w" (r0), "=w" (r1), "=w" (r2)
+		: "w" (r0), "w" (r1), "w" (r2), "w" (r3), "r" (r4), "r" (r5));
 	ret = r0;
 	if (ret1)
 		*ret1 = r1;
@@ -1047,8 +1047,8 @@ s32 scm_call_atomic5_3(u32 svc, u32 cmd, u32 arg1, u32 arg2,
 			".arch_extension sec\n"
 #endif
 		"smc	#0\n"
-		: "=r" (r0), "=r" (r1), "=r" (r2), "=r" (r3)
-		: "r" (r0), "r" (r1), "r" (r2), "r" (r3), "r" (r4), "r" (r5),
+		: "=w" (r0), "=w" (r1), "=w" (r2), "=w" (r3)
+		: "w" (r0), "w" (r1), "w" (r2), "w" (r3), "r" (r4), "r" (r5),
 		 "r" (r6));
 	ret = r0;
 
@@ -1086,8 +1086,8 @@ u32 scm_get_version(void)
 			".arch_extension sec\n"
 #endif
 			"smc	#0\n"
-			: "=r" (r0), "=r" (r1)
-			: "r" (r0), "r" (r1)
+			: "=w" (r0), "=w" (r1)
+			: "w" (r0), "w" (r1)
 			: R2_STR, R3_STR);
 	} while (r0 == SCM_INTERRUPTED);
 
